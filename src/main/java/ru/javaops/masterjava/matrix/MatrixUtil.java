@@ -3,6 +3,7 @@ package ru.javaops.masterjava.matrix;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * gkislin
@@ -14,6 +15,32 @@ public class MatrixUtil {
     public static int[][] concurrentMultiply(int[][] matrixA, int[][] matrixB, ExecutorService executor) throws InterruptedException, ExecutionException {
         final int matrixSize = matrixA.length;
         final int[][] matrixC = new int[matrixSize][matrixSize];
+        final int[][] cacheMatrix = new int[matrixSize][matrixSize];
+
+        //for (int i = 0; i < 10; i++) {
+        executor.submit(new Runnable() {
+            public void run() {
+                for (int i = 0; i < matrixSize; ++i) {
+                    for (int j = 0; j < matrixSize; ++j) {
+                        cacheMatrix[i][j] = matrixB[j][i];
+                    }
+                }
+
+                for (int i = 0; i < matrixSize; ++i) {
+                    for (int j = 0; j < matrixSize; ++j) {
+                        //matrixC[i][j] = 0;
+                        int sum = 0;
+                        for (int k = 0; k < matrixSize; ++k) {
+                            //matrixC[i][j] = matrixA[i][k] * cacthMatrix[j][k];
+                            sum += matrixA[i][k] * cacheMatrix[j][k];//matrixB[k][j];
+                        }
+                        matrixC[i][j] = sum;
+                    }
+                }
+            }
+        });
+        // }
+        executor.shutdown();
 
         return matrixC;
     }
