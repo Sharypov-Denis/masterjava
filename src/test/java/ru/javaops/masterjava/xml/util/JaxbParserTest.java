@@ -2,12 +2,18 @@ package ru.javaops.masterjava.xml.util;
 
 import com.google.common.io.Resources;
 import org.junit.Test;
-import ru.javaops.masterjava.xml.schema.CityType;
-import ru.javaops.masterjava.xml.schema.ObjectFactory;
-import ru.javaops.masterjava.xml.schema.Payload;
+//import ru.javaops.masterjava.xml.schema.CityType;
+//import ru.javaops.masterjava.xml.schema.ObjectFactory;
+//import ru.javaops.masterjava.xml.schema.Payload;
+import ru.javaops.masterjava.com.CityType;
+import ru.javaops.masterjava.com.ObjectFactory;
+import ru.javaops.masterjava.com.Payload;
+import ru.javaops.masterjava.com.User;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JaxbParserTest {
     private static final JaxbParser JAXB_PARSER = new JaxbParser(ObjectFactory.class);
@@ -24,6 +30,9 @@ public class JaxbParserTest {
         String strPayload = JAXB_PARSER.marshal(payload);
         JAXB_PARSER.validate(strPayload);
         System.out.println(strPayload);
+
+        List<User> users = payload.getUsers().getUser();
+        System.out.println("тест: " + users.get(0).getFullName());
     }
 
     @Test

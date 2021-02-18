@@ -2,41 +2,39 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://javaops.ru payload.xsd">
     <Users>
-        <User flag="active" city="kiv" project="basejava">
-            <email>gmail@gmail.com</email>
-            <fullName>Full Name</fullName>
-        </User>
-        <User flag="superuser" city="spb" project="topjava">
-            <email>admin@javaops.ru</email>
-            <fullName>Admin</fullName>
-        </User>
-        <User flag="deleted" city="spb" project="masterjava">
-            <email>mail@yandex.ru</email>
-            <fullName>Deleted</fullName>
-        </User>
+        <User flag="active" city="kiv" email="asds@hhsa.ru" FullName="USER1" groupRefs="basejava01"/>
+        <User flag="superuser" city="mnsk" email="asds4@hhsa.ru" FullName="USER2" groupRefs="basejava01 topjava01 masterjava01"/>
+        <User flag="superuser" city="spb" email="asds1@hhsa.ru" FullName="USER4" groupRefs="basejava01"/>
+        <User flag="deleted" city="mnsk" email="asds2@hhsa.ru" FullName="USER3" groupRefs="basejava01 topjava01 masterjava01"/>
+
     </Users>
+
     <Cities>
         <City id="spb">Санкт-Петербург</City>
         <City id="kiv">Киев</City>
         <City id="mnsk">Минск</City>
     </Cities>
+
     <Projects>
-        <Project id="basejava">База данных</Project>
-        <Project id="topjava">Энтерпрайз</Project>
-        <Project id="masterjava">Многопотчность</Project>
+        <Project name="База данных">
+            <Description>WHAT</Description>
+            <Group name="basejava01" type="FINISHED"/>
+            <Group name="basejava02" type="REGISTERING"/>
+            <Group name="basejava03" type="CURRENT"/>
+        </Project>
+        <Project name="Энтерпрайз">
+            <Description>WHAT1</Description>
+            <Group name="topjava01" type="REGISTERING"/>
+            <Group name="topjava02" type="CURRENT"/>
+            <Group name="topjava03" type="FINISHED"/>
+        </Project>
+        <Project name="Многопоточнось">
+            <Description>WHAT2</Description>
+            <Group name="masterjava01" type="CURRENT"/>
+            <Group name="masterjava02" type="FINISHED"/>
+            <Group name="masterjava03" type="REGISTERING"/>
+        </Project>
     </Projects>
-    <Groups>
-        <Group project="topjava">
-            <name>topjava01</name>
-            <type>REGISTERING</type>
-        </Group>
-        <Group project="topjava">
-            <name>topjava02</name>
-            <type>CURRENT</type>
-        </Group>
-        <Group project="topjava">
-            <name>topjava03</name>
-            <type>FINISHED</type>
-        </Group>
-    </Groups>
+
+
 </Payload>
